@@ -1,25 +1,15 @@
 <h1>Wobs</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Text</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @wobs.each do |wob| %>
-      <tr>
-        <td><%= wob.text %> (<%= wob.user %>)</td>
-        <td><%= link_to 'Show', wob %></td>
-        <td><%= link_to 'Edit', edit_wob_path(wob) %></td>
-        <td><%= link_to 'Destroy', wob, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<ul>
+  <% @wobs.each do |wob| %>
+    <li>
+      <%= link_to wob, wob %> (<%= wob.user %>)
+      <% if wob.user == current_user %>
+        <%= link_to 'Edit', edit_wob_path(wob) %>
+        <%= link_to 'Destroy', wob, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
 
 <%= link_to 'New Wob', new_wob_path %>
