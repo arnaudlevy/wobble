@@ -4,7 +4,7 @@ class WobsController < ApplicationController
   # GET /wobs
   # GET /wobs.json
   def index
-    @wobs = Wob.all
+    @wobs = Wob.all.order(created_at: :desc)
   end
 
   # GET /wobs/1

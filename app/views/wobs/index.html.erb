@@ -1,9 +1,11 @@
-<h1>Wobs</h1>
+<%= link_to 'New Wob', new_wob_path %>
 
 <ul>
   <% @wobs.each do |wob| %>
     <li>
-      <%= link_to wob, wob %> (<%= wob.user %>)
+      <%= link_to wob, wob %> 
+      (<%= wob.created_at.strftime "%d/%m/%Y à %H:%M" %> 
+      <%= wob.user %>)
       <% if wob.user == current_user %>
         <%= link_to 'Edit', edit_wob_path(wob) %>
         <%= link_to 'Destroy', wob, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -12,4 +14,3 @@
   <% end %>
 </ul>
 
-<%= link_to 'New Wob', new_wob_path %>
