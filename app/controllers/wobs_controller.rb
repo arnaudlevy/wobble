@@ -25,7 +25,7 @@ class WobsController < ApplicationController
   # POST /wobs.json
   def create
     @wob = Wob.new(wob_params)
-
+    @wob.user = current_user
     respond_to do |format|
       if @wob.save
         format.html { redirect_to @wob, notice: 'Wob was successfully created.' }
