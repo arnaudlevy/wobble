@@ -8,6 +8,12 @@
       </a>
       <nav class="nav-pills nav-stacked">
         <h4><a href="#"> <%= current_user %></a></h4>
+        <h4><a href="#"> Section 1 </a></h4>
+        <h4><a href="#"> Section 2 </a></h4>
+        <h4><a href="#"> Section 3 </a></h4>
+        <h4><a href="#"> Section 4 </a></h4>
+        <h4><a href="#"> Section 5 </a></h4>
+        <h4><a href="#"> Section 6 </a></h4>
       </nav>
     </div>
   </nav>
@@ -20,9 +26,8 @@
           </a>
         </div>
         <div class="media-body">
-          <h4 class="media-heading"><%= wob.user %></h4>
-          <p class="text-muted"><%= wob.created_at.strftime "%d/%m/%Y à %H:%M" %></p>
-          <p><%= wob %></p>
+          <h4 class="media-heading"><%= wob %></h4>
+          <p><%= wob.user %>, <%= wob.created_at.strftime "%d/%m/%Y à %H:%M" %></p>
           <% if wob.user == current_user %>
             <%= link_to 'Edit', edit_wob_path(wob), class: 'btn btn-default btn-xs' %>
             <%= link_to 'Destroy', wob, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %>
