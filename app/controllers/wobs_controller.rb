@@ -40,6 +40,7 @@ class WobsController < ApplicationController
   # PATCH/PUT /wobs/1
   # PATCH/PUT /wobs/1.json
   def update
+    render status: :forbidden unless @wob.user == current_user
     respond_to do |format|
       if @wob.update(wob_params)
         format.html { redirect_to @wob, notice: 'Wob was successfully updated.' }
@@ -54,6 +55,7 @@ class WobsController < ApplicationController
   # DELETE /wobs/1
   # DELETE /wobs/1.json
   def destroy
+    render status: :forbidden unless @wob.user == current_user
     @wob.destroy
     respond_to do |format|
       format.html { redirect_to wobs_url, notice: 'Wob was successfully destroyed.' }
