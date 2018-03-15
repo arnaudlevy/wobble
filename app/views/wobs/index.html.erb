@@ -1,16 +1,40 @@
-<%= link_to 'New Wob', new_wob_path %>
+<%= link_to 'New Wob', new_wob_path, class: 'btn btn-default' %>
 
-<ul>
-  <% @wobs.each do |wob| %>
-    <li>
-      <%= link_to wob, wob %> 
-      (<%= wob.created_at.strftime "%d/%m/%Y à %H:%M" %> 
-      <%= wob.user %>)
-      <% if wob.user == current_user %>
-        <%= link_to 'Edit', edit_wob_path(wob) %>
-        <%= link_to 'Destroy', wob, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<main class="row">
+  <nav class="col-md-3">
+    <div class="well">
+      <a href="#">
+        <%= gravatar_image_tag(current_user.email, class: 'img-responsive') %>
+      </a>
+      <nav class="nav-pills nav-stacked">
+        <h4><a href="#"> <%= current_user %></a></h4>
+      </nav>
+    </div>
+  </nav>
+  <section class="col-md-6">
+    <% @wobs.each do |wob| %>
+      <div class="media">
+        <div class="media-left">
+          <a href="#">
+            <%= gravatar_image_tag(wob.user.email, class: 'media-object') unless wob.user.nil? %>
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"><%= wob.user %></h4>
+          <p class="text-muted"><%= wob.created_at.strftime "%d/%m/%Y à %H:%M" %></p>
+          <p><%= wob %></p>
+          <% if wob.user == current_user %>
+            <%= link_to 'Edit', edit_wob_path(wob), class: 'btn btn-default btn-xs' %>
+            <%= link_to 'Destroy', wob, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %>
+          <% end %>
 
+        </div>
+      </div>
+    <% end %>
+  </section>
+  <aside class="col-md-3">
+    <img src="https://placeholdit.imgix.net/~text?w=300&amp;h=440&amp;txtsize=65&amp;txt=%5Bads%5D" class="img-responsive" alt="">
+    <br>
+    <img src="https://placeholdit.imgix.net/~text?w=300&amp;h=440&amp;txtsize=65&amp;txt=%5Bads%5D" class="img-responsive" alt="">
+  </aside>
+</main>
