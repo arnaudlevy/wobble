@@ -1,0 +1,2 @@
+module WobsHelper
+end

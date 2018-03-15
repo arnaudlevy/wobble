@@ -1,0 +1,2 @@
+class Wob < ApplicationRecord
+end
